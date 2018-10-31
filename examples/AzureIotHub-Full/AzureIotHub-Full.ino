@@ -1,6 +1,6 @@
 // This #include statement was automatically added by the Particle IDE.
-#include <azure-iot-hub-client.h>
-#include <ArduinoJson.h>
+#include "ArduinoJson.h"
+#include "AzureIotHubClient.h"
 
 #define HOST "your.azure-devices.net"
 #define DEVICE "azure-iot-hub-device-id"
