@@ -10,106 +10,35 @@ int count = 0;
 int msgId = 0;
 char telemetryBuffer[256];
 
-// define callback signiture
-void callbackCloud2Device(char *topic, byte *payload, unsigned int length);
-int callbackDirectMethod(char *method, byte *payload, unsigned int length);
-
-IotHub hub(HOST, DEVICE, DEVICE_KEY, callbackCloud2Device, callbackDirectMethod);
+IotHub hub(HOST, DEVICE, DEVICE_KEY);
 
 void setup()
 {
-  Serial.begin();
-
   pinMode(LED_BUILTIN, OUTPUT);
+  RGB.control(true);
 
   Particle.syncTime();
   waitUntil(Particle.syncTimeDone);
   Time.zone(0); // utc
-
-  RGB.control(true);
 }
 
 void loop()
 {
-  count++;
-
   digitalWrite(LED_BUILTIN, HIGH);
 
   //loop returns true if connected to Azure IoT Hub
   if (hub.loop())
   {
-    if (count % 25 == 0)
+    if (count++ % 25 == 0)
     {
+      Serial.printf("msg id: %d\n", msgId);
       hub.publish(telemetryToJson());
     }
   }
 
-  delay(20);
+  delay(20); // allow for a short blink before turning led off
   digitalWrite(LED_BUILTIN, LOW);
   delay(180);
-}
-
-// recieve message
-void callbackCloud2Device(char *topic, byte *payload, unsigned int length)
-{
-  if (length > 10)
-  {
-    return;
-  }
-
-  char p[length + 1];
-  memcpy(p, payload, length);
-  p[length] = NULL;
-  String message(p);
-
-  if (message.equals("RED"))
-  {
-    RGB.color(255, 0, 0);
-  }
-  else if (message.equals("GREEN"))
-  {
-    RGB.color(0, 255, 0);
-  }
-  else if (message.equals("BLUE"))
-  {
-    RGB.color(0, 0, 255);
-  }
-  else if (message.equals("BLACK"))
-  {
-    RGB.color(0, 0, 0);
-  }
-  else
-  {
-    RGB.color(255, 255, 255);
-  }
-}
-
-/*
-    process direct message
-    https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-    Return codes by convention: 200 = sucess, 400 = invalid request, 500 = issue processing request
-    */
-int callbackDirectMethod(char *directMethodName, byte *payload, unsigned int length)
-{
-  if (strlen(directMethodName) > 10)
-  {
-    return 400;
-  }
-
-  if (strcmp(directMethodName, "on") == 0)
-  {
-    RGB.color(255, 255, 0);
-  }
-  else if (strcmp(directMethodName, "off") == 0)
-  {
-    RGB.color(0, 0, 0);
-  }
-  else
-  {
-    return 400;
-  }
-
-  return 200;
 }
 
 char *telemetryToJson()

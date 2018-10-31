@@ -1,6 +1,6 @@
 # azure-iot-hub
 
-A Particle library for azure-iot-hub
+A Particle library for azure-iot-hub-client
 
 ## Welcome to your library!
 
