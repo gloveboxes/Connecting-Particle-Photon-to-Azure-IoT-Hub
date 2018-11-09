@@ -2,13 +2,14 @@
 #include "ArduinoJson.h"
 #include "AzureIotHubClient.h"
 
-#define HOST "your.azure-devices.net"
-#define DEVICE "azure-iot-hub-device-id"
-#define DEVICE_KEY "azure-iot-hub-device-key"
+#define HOST "your-hub.azure-devices.net"
+#define DEVICE "your-device-id"
+#define DEVICE_KEY "your-device-id-key"
 
 int count = 0;
 int msgId = 0;
 char telemetryBuffer[256];
+#define FAN_PIN D2
 
 // define callback signiture
 void callbackCloud2Device(char *topic, byte *payload, unsigned int length);
@@ -19,11 +20,9 @@ IotHub hub(HOST, DEVICE, DEVICE_KEY, callbackCloud2Device, callbackDirectMethod)
 void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(FAN_PIN, OUTPUT);
+  digitalWrite(FAN_PIN, HIGH);
   RGB.control(true);
-
-  Particle.syncTime();
-  waitUntil(Particle.syncTimeDone);
-  Time.zone(0); // utc
 }
 
 void loop()
@@ -79,13 +78,21 @@ int callbackDirectMethod(char *method, byte *payload, unsigned int length)
 
   toLowerCase(method, strlen(method));
 
-  if (strcmp(method, "on") == 0)
+  if (strcmp(method, "turnon") == 0)
   {
     RGB.color(255, 255, 0);
   }
-  else if (strcmp(method, "off") == 0)
+  else if (strcmp(method, "turnoff") == 0)
   {
     RGB.color(0, 0, 0);
+  }
+  else if (strcmp(method, "fanon") == 0)
+  {
+    digitalWrite(FAN_PIN, LOW);
+  }
+  else if (strcmp(method, "fanoff") == 0)
+  {
+    digitalWrite(FAN_PIN, HIGH);
   }
   else
   {
@@ -114,7 +121,7 @@ char *telemetryToJson()
   root["DeviceId"] = DEVICE;
 
   root["Celsius"] = 20 + random(-3, 3); // random temperature for sample
-  root["Humidity"] = 70 + random(-20, 90);
+  root["Humidity"] = 70 + random(-20, 20);
   root["hPa"] = 1080 + random(-100, 100);
   root["Light"] = 50 + random(-50, 50);
 

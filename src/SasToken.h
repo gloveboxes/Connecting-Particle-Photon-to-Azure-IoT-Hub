@@ -20,7 +20,7 @@ class SasToken
         }
     }
 
-    
+
   protected:
     bool generateSas();
     time_t sasExpiryPeriodInSeconds = 60 * 60; // Default to 60 minutes
@@ -39,8 +39,6 @@ class SasToken
 
     int urlEncode(char *dest, char *msg);
     void createSas(char *key);
-    time_t currentEpochTime();
-    time_t tmConvert_t(int YYYY, byte MM, byte DD, byte hh, byte mm, byte ss);
     void syncTime();
 };
 

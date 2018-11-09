@@ -16,10 +16,6 @@ void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
   RGB.control(true);
-
-  Particle.syncTime();
-  waitUntil(Particle.syncTimeDone);
-  Time.zone(0); // utc
 }
 
 void loop()

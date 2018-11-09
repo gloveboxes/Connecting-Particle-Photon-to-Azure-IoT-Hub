@@ -12,8 +12,8 @@ void IotHub::startConnection()
 
 void IotHub::stopConnection()
 {
-    client->unsubscribe(this->subDirectMethod);
     client->unsubscribe(this->subTopic);
+    client->unsubscribe(this->subDirectMethod);
     client->disconnect();
 
     this->wasConnected = false;
@@ -50,6 +50,9 @@ bool IotHub::loop()
     {
         if (WiFi.ready())
         {
+            Particle.syncTime();
+            waitUntil(Particle.syncTimeDone);
+            
             generateSas();
             startConnection();
             client->loop(); // check if new message from iot hub

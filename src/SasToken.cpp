@@ -25,7 +25,7 @@ int SasToken::urlEncode(char *dest, char *msg)
 
 void SasToken::createSas(char *key)
 {
-    sasExpiryTime = currentEpochTime() + sasExpiryPeriodInSeconds;
+    sasExpiryTime = Time.now() + sasExpiryPeriodInSeconds;
 
     int keyLength = strlen(key);
 
@@ -56,6 +56,7 @@ void SasToken::syncTime()
     if (millis() - lastTimeSync > ONE_DAY_MILLIS)
     {
         Particle.syncTime();
+        waitUntil(Particle.syncTimeDone);
         lastTimeSync = millis();
     }
 }
@@ -63,30 +64,11 @@ void SasToken::syncTime()
 // returns false if no new sas token generated
 bool SasToken::generateSas()
 {
-    if (currentEpochTime() < sasExpiryTime)
+    if (Time.now() < sasExpiryTime)
     {
         return false;
     }
     syncTime();
     createSas(key);
     return true;
-}
-
-time_t SasToken::currentEpochTime()
-{
-    return tmConvert_t(Time.year(), Time.month(), Time.day(), Time.hour(), Time.minute(), Time.second());
-}
-
-time_t SasToken::tmConvert_t(int YYYY, byte MM, byte DD, byte hh, byte mm, byte ss)
-{
-    t.tm_year = YYYY - 1900;
-    t.tm_mon = MM - 1;
-    t.tm_mday = DD;
-    t.tm_hour = hh;
-    t.tm_min = mm;
-    t.tm_sec = ss;
-    t.tm_isdst = 0;
-
-    time_t t_of_day = mktime(&t);
-    return t_of_day;
 }

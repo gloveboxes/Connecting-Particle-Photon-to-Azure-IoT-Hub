@@ -46,8 +46,9 @@ class IotHub : SasToken
            const char *deviceId, char *key,
            void (*callbackCloud2Device)(char *, uint8_t *, unsigned int) = NULL,
            int (*callbackDirectMethod)(char *, uint8_t *, unsigned int) = NULL,
-           time_t sasExpiryPeriodInSeconds = 3600)
-    { // default to 60 minute sas token expiry
+           int maxBufferSize = 500,
+           time_t sasExpiryPeriodInSeconds = 3600) // default to 60 minute sas token expiry
+    { 
 
         if (NULL != __iotHubInstance)
         {
@@ -65,9 +66,9 @@ class IotHub : SasToken
         this->subDirectMethod = "$iothub/methods/POST/#";
         this->directMethodResponse = "$iothub/methods/res/";
         this->pubTopic = "devices/" + String(deviceId) + "/messages/events/";
-        this->endPoint = "glovebox-iothub.azure-devices.net/" + String(deviceId) + "/api-version=2016-11-14";
+        this->endPoint = String(host) + "/" + String(deviceId) + "/api-version=2016-11-14";
 
-        this->client = new MQTT(host, 8883, processSubTopic);
+        this->client = new MQTT(host, 8883, processSubTopic, maxBufferSize);
 
         __iotHubInstance = this;
     }
