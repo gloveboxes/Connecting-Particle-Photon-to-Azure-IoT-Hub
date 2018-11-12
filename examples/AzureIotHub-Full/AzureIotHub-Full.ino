@@ -9,7 +9,7 @@ int msgId = 0;
 char telemetryBuffer[256];
 #define FAN_PIN D2
 
-// define callback signiture
+// define callback signature
 void callbackCloud2Device(char *topic, byte *payload, unsigned int length);
 int callbackDirectMethod(char *method, byte *payload, unsigned int length);
 
