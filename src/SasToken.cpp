@@ -23,9 +23,9 @@ int SasToken::urlEncode(char *dest, char *msg)
     return dest - startPtr;
 }
 
-void SasToken::createSas(char *key)
+void SasToken::createSasToken(char *key)
 {
-    sasExpiryTime = Time.now() + sasExpiryPeriodInSeconds;
+    sas.expiryTime = Time.now() + sas.expiryPeriodInSeconds;
 
     int keyLength = strlen(key);
 
@@ -35,7 +35,7 @@ void SasToken::createSas(char *key)
     base64_decode(buff, key, keyLength); //decode key
     Sha256.initHmac((const uint8_t *)buff, decodedKeyLength);
 
-    int len = snprintf(buff, sizeof(buff), "%s/devices/%s\n%d", this->host, this->deviceId, sasExpiryTime);
+    int len = snprintf(buff, sizeof(buff), "%s/devices/%s\n%d", this->device.host, this->device.deviceId, sas.expiryTime);
     Sha256.print(buff);
 
     char *sign = (char *)Sha256.resultHmac();
@@ -45,10 +45,10 @@ void SasToken::createSas(char *key)
 
     base64_encode(buff, sign, HASH_LENGTH);
 
-    char *sasPointer = fullSas;
-    sasPointer += snprintf(sasPointer, sizeof(fullSas), "SharedAccessSignature sr=%s/devices/%s&sig=", this->host, this->deviceId);
+    char *sasPointer = sas.token;
+    sasPointer += snprintf(sasPointer, sizeof(sas.token), "SharedAccessSignature sr=%s/devices/%s&sig=", this->device.host, this->device.deviceId);
     sasPointer += urlEncode(sasPointer, buff);
-    snprintf(sasPointer, sizeof(fullSas) - (sasPointer - fullSas), "&se=%d", sasExpiryTime);
+    snprintf(sasPointer, sizeof(sas.token) - (sasPointer - sas.token), "&se=%d", sas.expiryTime);
 }
 
 void SasToken::syncTime()
@@ -62,13 +62,13 @@ void SasToken::syncTime()
 }
 
 // returns false if no new sas token generated
-bool SasToken::generateSas()
+bool SasToken::generateSasToken()
 {
-    if (Time.now() < sasExpiryTime)
+    if (Time.now() < sas.expiryTime)
     {
         return false;
     }
     syncTime();
-    createSas(key);
+    createSasToken(device.deviceKey);
     return true;
 }

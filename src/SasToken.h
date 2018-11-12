@@ -14,7 +14,7 @@ class SasToken
   public:
     SasToken()
     {
-        if (strlen(host) + strlen(deviceId) > 80)
+        if (strlen(device.host) + strlen(device.deviceId) > 80)
         {
             Serial.println("WARNING: Combined number of characters exceeds 80.");
         }
@@ -22,23 +22,30 @@ class SasToken
 
 
   protected:
-    bool generateSas();
-    time_t sasExpiryPeriodInSeconds = 60 * 60; // Default to 60 minutes
-    char *host;
-    const char *deviceId;
-    char *key;
-    char fullSas[SAS_TOKEN_SIZE];
+    bool generateSasToken();
+
+    struct security{
+      time_t expiryPeriodInSeconds = 60 * 60; // Default to 60 minutes
+      time_t expiryTime = 0;
+      char token[SAS_TOKEN_SIZE];
+    } sas;
+
+    struct config {
+      char* connectionString;
+      char* host;
+      char* deviceId;
+      char* deviceKey;
+    } device;
 
   private:
-    time_t sasExpiryTime = 0;
 
     unsigned long lastTimeSync = millis();
 
     char buff[BUFSIZE];
-    struct tm t;
+    // struct tm t;
 
     int urlEncode(char *dest, char *msg);
-    void createSas(char *key);
+    void createSasToken(char *key);
     void syncTime();
 };
 

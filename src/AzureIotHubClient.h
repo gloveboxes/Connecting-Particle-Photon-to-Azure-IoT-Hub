@@ -4,9 +4,10 @@
 #include <MQTT-TLS.h>
 #include <Particle.h>
 #include "SasToken.h"
+// #include <string.h>
 
-/* 
-Baltimore 
+/*
+Baltimore
 https://github.com/Azure/azure-iot-sdk-c/blob/master/certs/certs.c
 */
 
@@ -42,58 +43,70 @@ static IotHub *__iotHubInstance;
 class IotHub : SasToken
 {
   public:
-    IotHub(char *host,
-           const char *deviceId, char *key,
+    IotHub(const char* connectionString,
            void (*callbackCloud2Device)(char *, uint8_t *, unsigned int) = NULL,
            int (*callbackDirectMethod)(char *, uint8_t *, unsigned int) = NULL,
            int maxBufferSize = 500,
            time_t sasExpiryPeriodInSeconds = 3600) // default to 60 minute sas token expiry
-    { 
+    {
 
         if (NULL != __iotHubInstance)
         {
             return;
         }
 
-        this->host = host;
-        this->deviceId = deviceId;
-        this->key = key;
-        this->sasExpiryPeriodInSeconds = sasExpiryPeriodInSeconds;
+        // because connection string gets tokenised with strtok the cs needs to be in memory
+        device.connectionString = (char*)malloc(strlen(connectionString) + 1);
+        strcpy(this->device.connectionString, connectionString);
+
+        tokeniseConnectionString(device.connectionString);
+
+        sas.expiryPeriodInSeconds = sasExpiryPeriodInSeconds;
+
         __callbackCloud2Device = callbackCloud2Device;
         __callbackDirectMethod = callbackDirectMethod;
 
-        this->subTopic = "devices/" + String(deviceId) + "/messages/devicebound/#";
-        this->subDirectMethod = "$iothub/methods/POST/#";
-        this->directMethodResponse = "$iothub/methods/res/";
-        this->pubTopic = "devices/" + String(deviceId) + "/messages/events/";
-        this->endPoint = String(host) + "/" + String(deviceId) + "/api-version=2016-11-14";
+        topic.messagePublish = "devices/" + String(device.deviceId) + "/messages/events/";
+        topic.messageSubscribe = "devices/" + String(device.deviceId) + "/messages/devicebound/#";
+        topic.directMethodSubscribe = "$iothub/methods/POST/#";
+        topic.directMethodResponse = "$iothub/methods/res/";
 
-        this->client = new MQTT(host, 8883, processSubTopic, maxBufferSize);
+        endPoint = String(device.host) + "/" + String(device.deviceId) + "/api-version=2016-11-14";
+
+        client = new MQTT(device.host, 8883, processSubTopic, maxBufferSize);
 
         __iotHubInstance = this;
     }
 
     bool loop();
     bool connected();
-    void publish(String msg);
+    bool publish(String msg);
+    char* getDeviceId(){
+      return device.deviceId;
+    }
 
   private:
     void startConnection();
     void stopConnection();
+    void tokeniseConnectionString(char *cs);
+    char * getValue(char *token, char *key);
     void (*directMethodCallback)(char *, uint8_t *, unsigned int);
     void directMethodReponse(char *rid, int status);
 
     bool wasConnected = false;
     MQTT *client;
     String endPoint;
-    String subTopic;
-    String subDirectMethod;
-    String directMethodResponse;
-    String pubTopic;
+
+    struct topics{
+        String messagePublish;
+        String messageSubscribe;
+        String directMethodSubscribe;
+        String directMethodResponse;
+    } topic;
 
     const char *letencryptCaPem = LET_ENCRYPT_CA_PEM;
 
-    static void directMessage(char *topic, byte *payload, unsigned int length)
+    static void directMessage(char *topic, byte *payload, unsigned int payloadLength)
     {
         char *startMethodName = strstr(topic, "POST/") + 5;
         if (NULL == startMethodName)
@@ -113,27 +126,27 @@ class IotHub : SasToken
         memset(methodName, 0, methodNamelength + 1);
         memcpy(methodName, startMethodName, methodNamelength);
 
-        int status = __callbackDirectMethod(methodName, payload, length);
+        int status = __callbackDirectMethod(methodName, payload, payloadLength);
 
         char *rid = strstr(topic, "rid=") + 4;
         __iotHubInstance->directMethodReponse(rid, status);
     }
 
-    static void processSubTopic(char *topic, byte *payload, unsigned int length)
+    static void processSubTopic(char *topic, byte *payload, unsigned int payloadLength)
     {
         char *p1;
 
         p1 = strstr(topic, "$iothub/methods/POST/"); // handle request response direct message
         if (p1 == topic && NULL != __callbackDirectMethod)
         {
-            directMessage(topic, payload, length);
+            directMessage(topic, payload, payloadLength);
             return;
         }
 
         p1 = strstr(topic, "devices/"); // handle cloud to device messages
         if (p1 == topic && NULL != __callbackCloud2Device)
         {
-            __callbackCloud2Device(topic, payload, length);
+            __callbackCloud2Device(topic, payload, payloadLength);
             return;
         }
     }

@@ -2,9 +2,7 @@
 #include "ArduinoJson.h"
 #include "AzureIotHubClient.h"
 
-#define HOST "your-hub.azure-devices.net"
-#define DEVICE "your-device-id"
-#define DEVICE_KEY "your-device-id-key"
+#define CONNECTON_STRING "HostName=saas-iothub-8135cd3b-f33a-4002-a44a-7ca5961b00b6.azure-devices.net;DeviceId=weather;SharedAccessKey=wVFmJaTiIeFBncMC7Q98A362RW1MmS+QAbBVrVoPEzU="
 
 int count = 0;
 int msgId = 0;
@@ -15,14 +13,16 @@ char telemetryBuffer[256];
 void callbackCloud2Device(char *topic, byte *payload, unsigned int length);
 int callbackDirectMethod(char *method, byte *payload, unsigned int length);
 
-IotHub hub(HOST, DEVICE, DEVICE_KEY, callbackCloud2Device, callbackDirectMethod);
+IotHub hub(CONNECTON_STRING, callbackCloud2Device, callbackDirectMethod);
 
 void setup()
 {
+  WiFi.selectAntenna(ANT_INTERNAL);
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(FAN_PIN, OUTPUT);
   digitalWrite(FAN_PIN, HIGH);
   RGB.control(true);
+  Time.zone(0);
 }
 
 void loop()
@@ -32,7 +32,7 @@ void loop()
   //loop returns true if connected to Azure IoT Hub
   if (hub.loop())
   {
-    if (count++ % 25 == 0)
+    if (count++ % 25 == 0)  // slow down the publish rate to every 25 loops
     {
       Serial.printf("msg id: %d\n", msgId);
       hub.publish(telemetryToJson());
@@ -69,26 +69,26 @@ void callbackCloud2Device(char *topic, byte *payload, unsigned int length)
     https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
     Return codes by convention: 200 = sucess, 400 = invalid request, 500 = issue processing request
     */
-int callbackDirectMethod(char *method, byte *payload, unsigned int length)
+int callbackDirectMethod(char *method, byte *payload, unsigned int payloadLength)
 {
-  if (strlen(method) > 10)
-  {
-    return 400;
-  }
-
   toLowerCase(method, strlen(method));
 
-  if (strcmp(method, "turnon") == 0)
+  if (strcmp(method, "lighton") == 0)
   {
     RGB.color(255, 255, 0);
   }
-  else if (strcmp(method, "turnoff") == 0)
+  else if (strcmp(method, "lightoff") == 0)
   {
     RGB.color(0, 0, 0);
   }
   else if (strcmp(method, "fanon") == 0)
   {
-    digitalWrite(FAN_PIN, LOW);
+    int speed = jsonGetValue(payload, payloadLength, "speed");
+    if (speed == -1) {return 500;}
+    // input between 0 and 100, inverted, and scale pwm between 0 and 255 duty cycle
+    speed = 100 - constrain(speed, 0, 100);
+    speed = map(speed, 0, 100, 0, 255);
+    analogWrite(FAN_PIN, speed, 1000);
   }
   else if (strcmp(method, "fanoff") == 0)
   {
@@ -100,6 +100,26 @@ int callbackDirectMethod(char *method, byte *payload, unsigned int length)
   }
 
   return 200;
+}
+
+int jsonGetValue(byte* payload, int payloadLength, char * key){
+  char pl[payloadLength + 1];
+  memcpy(pl, payload, payloadLength);
+  pl[payloadLength] = NULL;
+
+  //only expecting json with a single element - allow a little extra padding
+  // https://arduinojson.org/v5/assistant/
+
+  const int capacity = JSON_OBJECT_SIZE(2) + 30;
+  DynamicJsonBuffer jsonBuffer(capacity);
+  JsonObject& root = jsonBuffer.parseObject(pl);
+
+  if (root.success()) {
+    int speed = root[key];
+    return speed;
+  } else {
+    return -1;
+  }
 }
 
 void toLowerCase(char* s, size_t length){
@@ -115,21 +135,21 @@ char *telemetryToJson()
     use to calculate JSON_OBJECT_SIZE https://arduinojson.org/v5/assistant/
     Have allowed for a few extra json fields that actually being used at the moment
 */
-  DynamicJsonBuffer jsonBuffer(JSON_OBJECT_SIZE(12) + 200);
+  DynamicJsonBuffer jsonBuffer(JSON_OBJECT_SIZE(12) + 250);
   JsonObject &root = jsonBuffer.createObject();
 
-  root["DeviceId"] = DEVICE;
+  root["deviceid"] = hub.getDeviceId();
 
-  root["Celsius"] = 20 + random(-3, 3); // random temperature for sample
-  root["Humidity"] = 70 + random(-20, 20);
-  root["hPa"] = 1080 + random(-100, 100);
-  root["Light"] = 50 + random(-50, 50);
+  root["temp"] = 20 + random(-3, 3); // random temperature for sample
+  root["humidity"] = 70 + random(-20, 20);
+  root["pressure"] = 1080 + random(-100, 100);
+  root["light"] = 50 + random(-50, 50);
 
-  root["Geo"] = "Sydney";
-  root["Utc"] = Time.format(Time.now(), TIME_FORMAT_ISO8601_FULL).c_str();
-  root["Mem"] = System.freeMemory();
-  root["Id"] = ++msgId;
-  root["Schema"] = 1;
+  root["geo"] = "Sydney";
+  root["utc"] = Time.format(Time.now(), TIME_FORMAT_ISO8601_FULL).c_str();
+  root["mem"] = System.freeMemory();
+  root["id"] = ++msgId;
+  root["schema"] = 1;
 
   root.printTo(telemetryBuffer, sizeof(telemetryBuffer));
 

@@ -2,20 +2,19 @@
 #include "ArduinoJson.h"
 #include "AzureIotHubClient.h"
 
-#define HOST "your.azure-devices.net"
-#define DEVICE "azure-iot-hub-device-id"
-#define DEVICE_KEY "azure-iot-hub-device-key"
+#define CONNECTON_STRING "HostName=saas-iothub-8135cd3b-f33a-4002-a44a-7ca5961b00b6.azure-devices.net;DeviceId=weather;SharedAccessKey=wVFmJaTiIeFBncMC7Q98A362RW1MmS+QAbBVrVoPEzU="
 
 int count = 0;
 int msgId = 0;
 char telemetryBuffer[256];
 
-IotHub hub(HOST, DEVICE, DEVICE_KEY);
+IotHub hub(CONNECTON_STRING);
 
 void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
   RGB.control(true);
+  Time.zone(0);
 }
 
 void loop()
@@ -46,18 +45,18 @@ char *telemetryToJson()
   DynamicJsonBuffer jsonBuffer(JSON_OBJECT_SIZE(12) + 200);
   JsonObject &root = jsonBuffer.createObject();
 
-  root["DeviceId"] = DEVICE;
+  root["deviceid"] = hub.getDeviceId();
 
-  root["Celsius"] = 20 + random(-3, 3); // random temperature for sample
-  root["Humidity"] = 70 + random(-20, 90);
-  root["hPa"] = 1080 + random(-100, 100);
-  root["Light"] = 50 + random(-50, 50);
+  root["temp"] = 20 + random(-3, 3); // random temperature for sample
+  root["humidity"] = 70 + random(-20, 20);
+  root["pressure"] = 1080 + random(-100, 100);
+  root["light"] = 50 + random(-50, 50);
 
-  root["Geo"] = "Sydney";
-  root["Utc"] = Time.format(Time.now(), TIME_FORMAT_ISO8601_FULL).c_str();
-  root["Mem"] = System.freeMemory();
-  root["Id"] = ++msgId;
-  root["Schema"] = 1;
+  root["geo"] = "Sydney";
+  root["utc"] = Time.format(Time.now(), TIME_FORMAT_ISO8601_FULL).c_str();
+  root["mem"] = System.freeMemory();
+  root["id"] = ++msgId;
+  root["schema"] = 1;
 
   root.printTo(telemetryBuffer, sizeof(telemetryBuffer));
 
