@@ -21,6 +21,8 @@ Acknowledgement. This IoT Hub Client library depends and builds upon the fantast
 
 3. [A free Azure IoT Central Application](#create-a-free-azure-iot-central-application)
 
+    [![Create an Azure IoT Central Application](https://www.youtube.com/upload_thumbnail?v=D26rJmHyZcA&t=hqdefault&ts=1542065067339)](https://youtu.be/D26rJmHyZcA)
+
 4. If you wish to use a Azure IoT Hub instead of Azure IoT Central, then first create a [Free Azure](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) account, then [Create an Azure IoT Hub (Free Tier)](#creating-an-azure-iot-hub-free-tier)
 
 ## Why connect your Particle Photon to Azure Services?
