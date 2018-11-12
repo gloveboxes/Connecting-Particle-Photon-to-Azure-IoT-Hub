@@ -9,23 +9,24 @@
 #define BLOCK_LENGTH 64
 
 union _buffer {
-  uint8_t b[BLOCK_LENGTH];
-  uint32_t w[BLOCK_LENGTH/4];
+    uint8_t b[BLOCK_LENGTH];
+    uint32_t w[BLOCK_LENGTH / 4];
 };
 union _state {
-  uint8_t b[HASH_LENGTH];
-  uint32_t w[HASH_LENGTH/4];
+    uint8_t b[HASH_LENGTH];
+    uint32_t w[HASH_LENGTH / 4];
 };
 
 class Sha256Class : public Print
 {
   public:
     void init(void);
-    void initHmac(const uint8_t* secret, int secretLength);
-    uint8_t* result(void);
-    uint8_t* resultHmac(void);
+    void initHmac(const uint8_t *secret, int secretLength);
+    uint8_t *result(void);
+    uint8_t *resultHmac(void);
     virtual size_t write(uint8_t);
     using Print::write;
+
   private:
     void pad();
     void addUncounted(uint8_t data);

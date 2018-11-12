@@ -11,42 +11,42 @@
 
 class SasToken
 {
-  public:
-    SasToken()
+public:
+  SasToken()
+  {
+    if (strlen(device.host) + strlen(device.deviceId) > 80)
     {
-        if (strlen(device.host) + strlen(device.deviceId) > 80)
-        {
-            Serial.println("WARNING: Combined number of characters exceeds 80.");
-        }
+      Serial.println("WARNING: Combined number of characters exceeds 80.");
     }
+  }
 
+protected:
+  bool generateSasToken();
 
-  protected:
-    bool generateSasToken();
+  struct security
+  {
+    time_t expiryPeriodInSeconds = 60 * 60; // Default to 60 minutes
+    time_t expiryTime = 0;
+    char token[SAS_TOKEN_SIZE];
+  } sas;
 
-    struct security{
-      time_t expiryPeriodInSeconds = 60 * 60; // Default to 60 minutes
-      time_t expiryTime = 0;
-      char token[SAS_TOKEN_SIZE];
-    } sas;
+  struct config
+  {
+    char *connectionString;
+    char *host;
+    char *deviceId;
+    char *deviceKey;
+  } device;
 
-    struct config {
-      char* connectionString;
-      char* host;
-      char* deviceId;
-      char* deviceKey;
-    } device;
+private:
+  unsigned long lastTimeSync = millis();
 
-  private:
+  char buff[BUFSIZE];
+  // struct tm t;
 
-    unsigned long lastTimeSync = millis();
-
-    char buff[BUFSIZE];
-    // struct tm t;
-
-    int urlEncode(char *dest, char *msg);
-    void createSasToken(char *key);
-    void syncTime();
+  int urlEncode(char *dest, char *msg);
+  void createSasToken(char *key);
+  void syncTime();
 };
 
 #endif // _SASTOKEN
