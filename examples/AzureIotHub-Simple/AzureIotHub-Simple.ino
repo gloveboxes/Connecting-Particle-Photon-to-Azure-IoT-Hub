@@ -2,7 +2,7 @@
 #include "ArduinoJson.h"
 #include "AzureIotHubClient.h"
 
-#define CONNECTON_STRING "HostName=saas-iothub-8135cd3b-f33a-4002-a44a-7ca5961b00b6.azure-devices.net;DeviceId=weather;SharedAccessKey=wVFmJaTiIeFBncMC7Q98A362RW1MmS+QAbBVrVoPEzU="
+#define CONNECTON_STRING "<Your Azure IoT Hub or Azure IoT Central Connection String>"
 
 int count = 0;
 int msgId = 0;

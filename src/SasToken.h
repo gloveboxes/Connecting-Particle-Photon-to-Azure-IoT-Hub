@@ -6,7 +6,7 @@
 
 #define MAX_HOST_DEVICE_LEN
 #define BUFSIZE 150
-#define SAS_TOKEN_SIZE 250
+#define SAS_TOKEN_SIZE 300
 #define ONE_DAY_MILLIS (24 * 60 * 60 * 1000)
 
 class SasToken
@@ -14,10 +14,6 @@ class SasToken
 public:
   SasToken()
   {
-    if (strlen(device.host) + strlen(device.deviceId) > 80)
-    {
-      Serial.println("WARNING: Combined number of characters exceeds 80.");
-    }
   }
 
 protected:
@@ -40,10 +36,7 @@ protected:
 
 private:
   unsigned long lastTimeSync = millis();
-
   char buff[BUFSIZE];
-  // struct tm t;
-
   int urlEncode(char *dest, char *msg);
   void createSasToken(char *key);
   void syncTime();
