@@ -11,7 +11,7 @@ Now you can connect your Particle Photon to directly to both the Particle Cloud 
 
 The Azure IoT Hub Client library can send approximately 50 messages/second to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which allows up to 8000 messages/day then you will reach the limit in just under 3 minutes. So ensure you limit the data publish rate.
 
-Acknowledgement. This IoT Hub Client library depends and builds upon the fantastic [MQTT-TLS](https://github.com/hirotakaster/MQTT-TLS) library.
+Acknowledgment. This IoT Hub Client library depends and builds upon the fantastic [MQTT-TLS](https://github.com/hirotakaster/MQTT-TLS) library.
 
 ## What you need
 
@@ -21,7 +21,7 @@ Acknowledgement. This IoT Hub Client library depends and builds upon the fantast
 
 3. [A free Azure IoT Central Application](#create-a-free-azure-iot-central-application)
 
-4. If you wish to use a Azure IoT Hub instead of Azure IoT Central, then first create a [Free Azure](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) account, then [Create an Azure IoT Hub (Free Tier)](#creating-an-azure-iot-hub-free-tier)
+4. If you wish to use an Azure IoT Hub instead of Azure IoT Central, then first create a [Free Azure](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) account, then [Create an Azure IoT Hub (Free Tier)](#creating-an-azure-iot-hub-free-tier)
 
 ## Why connect your Particle Photon to Azure Services?
 
@@ -29,7 +29,7 @@ Here are some reasons why you might want to connect your Particle Photon to Azur
 
 1. You are already using Azure and you want to connect, control and integrate your devices with other business processes.
 
-2. [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/) (Free 7 day trial or Pay-As-You-Go Free for the first 5 devices) is a ready to go, no code required service you can use to chart your device telemetry and control devices. [Find out more about Azure IoT Central](https://youtu.be/G32stXSwtyA)
+2. [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/) (Free 7 day trial or Pay-As-You-Go Free for the first 5 devices) is ready to go, no code required service you can use to chart your device telemetry and control devices. [Find out more about Azure IoT Central](https://youtu.be/G32stXSwtyA)
 
     ![iot central](docs/iot-central.png)
 
@@ -56,7 +56,7 @@ Here are some reasons why you might want to connect your Particle Photon to Azur
 
 6. Create an Azure IoT Central Application
 
-    Watch this 5 minute [screencast](https://youtu.be/D26rJmHyZcA) on how to create the Azure IoT Central Application to chart telemetry and send commands to the Particle Photon.
+    Watch this 5-minute [screencast](https://youtu.be/D26rJmHyZcA) on how to create the Azure IoT Central Application to chart telemetry and send commands to the Particle Photon.
 
     To summaries the screencast:-
 
@@ -67,30 +67,36 @@ Here are some reasons why you might want to connect your Particle Photon to Azur
     5. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry, then click **Done**.
     6. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff", then click **Done**.
     7. Click **Device Explorer** on the sidebar menu, select the template you just created, the add a **Real Device**
-    8. Once you have created your real device click the the **Connect** button in the top right hand corner for the device credentials.
+    8. Once you have created your real device click the **Connect** button in the top right-hand corner for the device credentials.
+
+        ![Device Connection](docs/iot-central-device-connection.jpg)
+
+    9. You will need these credentials to generate a connection string.
 
 7. Create the Connection String
 
     You need to generate a connection string for the IoT Central device. You can either:-
 
       1. Download the [Connection String Generator](https://github.com/Azure/dps-keygen/tree/master/bin) for [Windows](https://github.com/Azure/dps-keygen/tree/master/bin/windows), [macOS](https://github.com/Azure/dps-keygen/tree/master/bin/osx), or [Linux](https://github.com/Azure/dps-keygen/tree/master/bin/linux). The README has the run instructions.
-      2. Use my unofficial web based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download required.
+      2. Use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download required.
 
-8. Add the Connection String to the Particle Photon project
+8. Update the Connection String in the Photon project with the connection string you generated in the previous step.
 
-Update the connection for your device. See instructions below to obtain an [Azure IoT Hub](#azure-iot-hub-connection-string) or an [Azure IoT Central](#azure-iot-central-connection-string) device connection string.
-
+    Update the connection for your device. See instructions below to obtain an [Azure IoT Hub](#azure-iot-hub-connection-string) or an [Azure IoT Central](#azure-iot-central-connection-string) device connection string.
+  
     ![Update connection string](docs/new-particle-project-update-connection-string.jpg)
 
-## Update Particle Firmware to 6.3
+9. Set your Particle Photon Firmware to 6.3
 
-Set the device target firmware to 6.3. Your milage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery and 802.11n worked better with 6.3. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
+    Set the device target firmware to 6.3. Your mileage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery and 802.11n worked better with 6.3. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
 
-    ![Target firmware 6.3](docs/particle-device-firmware-target.JPG)
+      ![Target firmware 6.3](docs/particle-device-firmware-target.jpg)
 
-## Flash the Particle Photon with Azure IoT Hub Client app
+10. Flash the Particle Photon with Azure IoT Hub Client app your device from the Particle IDE.
 
-## Understanding the IotHub Library with examples
+## Understanding the AzureIotHubClient Library with examples
+
+The following examples will help you understand how to use the Azure IoT Hub Client library. These examples are simplified versions of the example templates included with the library.
 
 ### Example: AzureIotHub-Simple
 
