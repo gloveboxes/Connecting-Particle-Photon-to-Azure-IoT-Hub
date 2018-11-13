@@ -21,15 +21,11 @@ Acknowledgement. This IoT Hub Client library depends and builds upon the fantast
 
 3. [A free Azure IoT Central Application](#create-a-free-azure-iot-central-application)
 
-    [![Create an Azure IoT Central Application](docs/create-iot-central-application.jpg)](https://youtu.be/D26rJmHyZcA)
-
-
-
 4. If you wish to use a Azure IoT Hub instead of Azure IoT Central, then first create a [Free Azure](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) account, then [Create an Azure IoT Hub (Free Tier)](#creating-an-azure-iot-hub-free-tier)
 
 ## Why connect your Particle Photon to Azure Services?
 
-Here are some examples as to why you might want to connect your Particle Photon to Azure.
+Here are some reasons why you might want to connect your Particle Photon to Azure.
 
 1. You are already using Azure and you want to connect, control and integrate your devices with other business processes.
 
@@ -58,13 +54,41 @@ Here are some examples as to why you might want to connect your Particle Photon 
 
     ![select library](docs/new-particle-project-select-library-use-example.JPG)
 
-6. Update the connection for your device. See instructions below to obtain an [Azure IoT Hub](#azure-iot-hub-connection-string) or an [Azure IoT Central](#azure-iot-central-connection-string) device connection string.
+6. Create an Azure IoT Central Application
 
-    ![Update connection string](docs/new-particle-project-update-connection-string.JPG)
+    Watch this 5 minute [screencast](https://youtu.be/D26rJmHyZcA) on how to create the Azure IoT Central Application to chart telemetry and send commands to the Particle Photon.
 
-7. Set the device target firmware to 6.3. Your milage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery and 802.11n worked better with 6.3. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
+    To summaries the screencast:-
+
+    1. Create the Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central)
+    2. Click **Getting Started**
+    3. Select Trial, Custom Application, type your application name, click **Create**
+    4. Click **Create Device Templates**, name your template eg Particle, click **Create**
+    5. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry, then click **Done**.
+    6. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff", then click **Done**.
+    7. Click **Device Explorer** on the sidebar menu, select the template you just created, the add a **Real Device**
+    8. Once you have created your real device click the the **Connect** button in the top right hand corner for the device credentials.
+
+7. Create the Connection String
+
+    You need to generate a connection string for the IoT Central device. You can either:-
+
+      1. Download the [Connection String Generator](https://github.com/Azure/dps-keygen/tree/master/bin) for [Windows](https://github.com/Azure/dps-keygen/tree/master/bin/windows), [macOS](https://github.com/Azure/dps-keygen/tree/master/bin/osx), or [Linux](https://github.com/Azure/dps-keygen/tree/master/bin/linux). The README has the run instructions.
+      2. Use my unofficial web based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download required.
+
+8. Add the Connection String to the Particle Photon project
+
+Update the connection for your device. See instructions below to obtain an [Azure IoT Hub](#azure-iot-hub-connection-string) or an [Azure IoT Central](#azure-iot-central-connection-string) device connection string.
+
+    ![Update connection string](docs/new-particle-project-update-connection-string.jpg)
+
+## Update Particle Firmware to 6.3
+
+Set the device target firmware to 6.3. Your milage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery and 802.11n worked better with 6.3. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
 
     ![Target firmware 6.3](docs/particle-device-firmware-target.JPG)
+
+## Flash the Particle Photon with Azure IoT Hub Client app
 
 ## Understanding the IotHub Library with examples
 
