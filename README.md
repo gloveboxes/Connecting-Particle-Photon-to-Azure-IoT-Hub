@@ -10,9 +10,11 @@
 
 Now you can connect your Particle Photon to directly to both the Particle Cloud and Azure IoT Hub or Azure IoT Central. The **AzureIoTHubClient** library supports bidirectional messaging, [Direct methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins). 
 
-The Azure IoT Hub Client library can send 50 messages/second to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which allows up to 8000 messages/day, then you will reach the limit in just under 3 minutes. So, ensure you limit the data publish rate.
+The Azure IoT Hub Client library can send 50 messages/second to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which is limited to 8000 messages/day, you will reach the limit in just under 3 minutes. So, ensure you control your telemetry publish rate.
 
-Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Under the covers it is built on [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). It is available as a free 7-day trial, or as a Pay-As-You-Go (free for the first 5 devices) service. Hence this library and documentation is applicable to both Azure IoT Hub and IoT Central.
+Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Under the covers it is built on [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation is applicable to both Azure IoT Hub and IoT Central.
+
+Azure IoT Central is available as a free 7-day trial, or as a Pay-As-You-Go (free for the first 5 devices) service.
 
 Acknowledgment. This AzureIoTHubClient library depends and builds upon the fantastic [MQTT-TLS](https://github.com/hirotakaster/MQTT-TLS) library.
 
@@ -63,27 +65,24 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     To summaries the screencast:
 
-    1. Create the Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central)
-    2. Click **Getting Started**
-    3. Select Trial, Custom Application, type your application name, click **Create**
-    4. Click **Create Device Templates**, name your template eg Particle, click **Create**
-    5. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry, then click **Done**.
-    6. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff", then click **Done**.
-    7. Click **Device Explorer** on the sidebar menu, select the template you just created, the add a **Real Device**
-    8. Once you have created your real device click the **Connect** button in the top right-hand corner for the device credentials.
+    1. Create the Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central), then click **Getting Started**
+    2. Select Trial, Custom Application, type your application name, click **Create**
+    3. Click **Create Device Templates**, name your template eg Particle, click **Create**
+    4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry, then click **Done**.
+    5. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff", then click **Done**.
+    6. Click **Device Explorer** on the sidebar menu, select the template you just created, the add a **Real Device**
+    7. Once you have created your real device click the **Connect** button in the top right-hand corner of the screen to reveal the device credentials that you will need for the next step.
 
-        ![Device Connection](docs/iot-central-device-connection.jpg)
-
-    9. You will need these credentials to generate a connection string.
+          ![Device Connection](docs/iot-central-device-connection.jpg)
 
 7. Create the Connection String
 
     You need to generate a connection string for the IoT Central device. You can either:
 
       1. Download the [Connection String Generator](https://github.com/Azure/dps-keygen/tree/master/bin) for [Windows](https://github.com/Azure/dps-keygen/tree/master/bin/windows), [macOS](https://github.com/Azure/dps-keygen/tree/master/bin/osx), or [Linux](https://github.com/Azure/dps-keygen/tree/master/bin/linux). The README has the run instructions.
-      2. Use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download required.
+      2. or use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download required.
 
-8. Update the Connection String in the Photon project with the connection string you generated in the previous step.
+8. Update the Connection String in the Particle Photon project with the connection string you generated in the previous step.
 
     Update the connection for your device. See instructions below to obtain an [Azure IoT Hub](#azure-iot-hub-connection-string) or an [Azure IoT Central](#azure-iot-central-connection-string) device connection string.
   
@@ -206,11 +205,13 @@ Passing in turing parameters with no callbacks.
 IotHub hub(CONNECTON_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSeconds);
 ```
 
-## Device Connection Strings
+## How to set up an Azure IoT Hub (Free Tier)
 
-### Azure IoT Hub Connection String
+1. Create a [free Azure Account](https://azure.microsoft.com/en-au/free/).
 
-### Azure IoT Central Connection String
+2. Watch this [screencast](https://youtu.be/lHpUu6wSX40) as an introduction to creating an Azure IoT Hub, an IoT Device and how to copy the devices connection string.
+
+3. For more information see [Create an Azure IoT Hub (free tier) using the Azure portal](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal)
 
 ## Updating Particle Photon Firmware to 6.3
 
@@ -230,11 +231,3 @@ IotHub hub(CONNECTON_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSeconds
     particle flash <your device id> system-part2-0.6.3-photon.bin
     particle flash <your device id> system-part1-0.6.3-photon.bin
     ```
-
-## Creating an Azure IoT Hub (Free Tier)
-
-[Create an Azure IoT Hub (free tier) using the Azure portal](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal)
-
-## Create a free Azure IoT Central Application
-
-[Azure IoT Central Application (Free 7 day trial or Pay-As-You-Go Free for the first 5 devices)](https://azure.microsoft.com/en-au/services/iot-central/)
