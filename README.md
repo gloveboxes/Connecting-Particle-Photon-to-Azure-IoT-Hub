@@ -9,7 +9,7 @@
 
 Now you can connect your Particle Photon to directly to both the Particle Cloud and Azure IoT Hub or Azure IoT Central. The **AzureIoTHubClient** library supports bidirectional messaging, direct methods invocation and soon device twin support.
 
-The Azure IoT Hub Client library can send approximately 50 messages/second to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which allows up to 8000 messages/day then you will reach the limit in just under 3 minutes. So ensure you limit the data publish rate.
+The Azure IoT Hub Client library can send approximately 50 messages/second to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which allows up to 8000 messages/day, then you will reach the limit in just under 3 minutes. So, ensure you limit the data publish rate.
 
 Acknowledgment. This IoT Hub Client library depends and builds upon the fantastic [MQTT-TLS](https://github.com/hirotakaster/MQTT-TLS) library.
 
@@ -27,13 +27,13 @@ Acknowledgment. This IoT Hub Client library depends and builds upon the fantasti
 
 Here are some reasons why you might want to connect your Particle Photon to Azure.
 
-1. You are already using Azure and you want to connect, control and integrate your devices with other business processes.
+1. You are already using Azure and you want to connect, control, and integrate your devices with other business processes.
 
-2. [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/) (Free 7 day trial or Pay-As-You-Go Free for the first 5 devices) is ready to go, no code required service you can use to chart your device telemetry and control devices. [Find out more about Azure IoT Central](https://youtu.be/G32stXSwtyA)
+2. [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/) (Free 7-day trial or Pay-As-You-Go Free for the first 5 devices) is ready to go, no code required service you can use to chart your device telemetry and control devices. [Find out more about Azure IoT Central](https://youtu.be/G32stXSwtyA)
 
     ![iot central](docs/iot-central.png)
 
-3. You want to learn how to do interesting things with your telemetry such as:-
+3. You want to learn how to do interesting things with your telemetry such as:
     * [Weather forecasting using the sensor data from your IoT hub in Azure Machine Learning](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-weather-forecast-machine-learning),
     * [Visualize real-time sensor data from your Azure IoT hub by using the Web Apps feature of Azure App Service](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-web-apps),
     * [IoT remote monitoring and notifications with Azure Logic Apps connecting your IoT hub and mailbox](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps).
@@ -58,7 +58,7 @@ Here are some reasons why you might want to connect your Particle Photon to Azur
 
     Watch this 5-minute [screencast](https://youtu.be/D26rJmHyZcA) on how to create the Azure IoT Central Application to chart telemetry and send commands to the Particle Photon.
 
-    To summaries the screencast:-
+    To summaries the screencast:
 
     1. Create the Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central)
     2. Click **Getting Started**
@@ -75,7 +75,7 @@ Here are some reasons why you might want to connect your Particle Photon to Azur
 
 7. Create the Connection String
 
-    You need to generate a connection string for the IoT Central device. You can either:-
+    You need to generate a connection string for the IoT Central device. You can either:
 
       1. Download the [Connection String Generator](https://github.com/Azure/dps-keygen/tree/master/bin) for [Windows](https://github.com/Azure/dps-keygen/tree/master/bin/windows), [macOS](https://github.com/Azure/dps-keygen/tree/master/bin/osx), or [Linux](https://github.com/Azure/dps-keygen/tree/master/bin/linux). The README has the run instructions.
       2. Use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download required.
