@@ -8,7 +8,9 @@
 |Screencasts|[How to create the Azure IoT Central Application](https://youtu.be/D26rJmHyZcA)|
 |Date|As at Nov 2018|
 
-Now you can connect your Particle Photon to directly to both the Particle Cloud and Azure IoT Hub or Azure IoT Central. The **AzureIoTHubClient** library supports bidirectional messaging, [Direct methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins). 
+Now you can connect your Particle Photon to directly to both the Particle Cloud and Azure IoT Hub or Azure IoT Central. The **AzureIoTHubClient** library supports bidirectional messaging, [Direct methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins).
+
+!!!! ADD PHOTO HERE !!!
 
 The Azure IoT Hub Client library can send 50 messages/second to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which is limited to 8000 messages/day, you will reach the limit in just under 3 minutes. So, ensure you control your telemetry publish rate.
 
@@ -63,6 +65,8 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     Watch this 5-minute [screencast](https://youtu.be/D26rJmHyZcA) on how to create the Azure IoT Central Application to chart telemetry and send commands to the Particle Photon.
 
+    [![screencast](docs/iot-central-youtube.jpg)](https://www.youtube.com/watch?v=D26rJmHyZcA&t=5s)
+
     To summaries the screencast:
 
     1. Create the Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central), then click **Getting Started**
@@ -90,7 +94,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 9. Set your Particle Photon Firmware to 6.3
 
-    Set the device target firmware to 6.3. Your mileage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery and 802.11n worked better with 6.3. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
+    Set the device target firmware to 6.3. Your mileage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery worked, 802.11n worked, and there is more usable memory. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
 
       ![Target firmware 6.3](docs/particle-device-firmware-target.jpg)
 
@@ -208,6 +212,8 @@ IotHub hub(CONNECTON_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSeconds
 ## How to set up an Azure IoT Hub (Free Tier)
 
 1. Create a [free Azure Account](https://azure.microsoft.com/en-au/free/).
+
+    [![screencast](docs/create-azure-iot-hub-youtube.jpg)](https://www.youtube.com/watch?v=lHpUu6wSX40)
 
 2. Watch this [screencast](https://youtu.be/lHpUu6wSX40) as an introduction to creating an Azure IoT Hub, an IoT Device and how to copy the devices connection string.
 
