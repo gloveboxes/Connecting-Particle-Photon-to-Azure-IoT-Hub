@@ -2,7 +2,7 @@
 #include "ArduinoJson.h"
 #include "AzureIotHubClient.h"
 
-#define CONNECTON_STRING "<Your Azure IoT Hub or Azure IoT Central Connection String>"
+#define CONNECTION_STRING "<Your Azure IoT Hub or Azure IoT Central Connection String>"
 
 int count = 0;
 int msgId = 0;
@@ -13,7 +13,7 @@ char telemetryBuffer[256];
 void callbackCloud2Device(char *topic, byte *payload, unsigned int length);
 int callbackDirectMethod(char *method, byte *payload, unsigned int length);
 
-IotHub hub(CONNECTON_STRING, callbackCloud2Device, callbackDirectMethod);
+IotHub hub(CONNECTION_STRING, callbackCloud2Device, callbackDirectMethod);
 
 void setup()
 {

@@ -2,13 +2,13 @@
 #include "ArduinoJson.h"
 #include "AzureIotHubClient.h"
 
-#define CONNECTON_STRING "<Your Azure IoT Hub or Azure IoT Central Connection String>"
+#define CONNECTION_STRING "<Your Azure IoT Hub or Azure IoT Central Connection String>"
 
 int count = 0;
 int msgId = 0;
 char telemetryBuffer[256];
 
-IotHub hub(CONNECTON_STRING);
+IotHub hub(CONNECTION_STRING);
 
 void setup()
 {
