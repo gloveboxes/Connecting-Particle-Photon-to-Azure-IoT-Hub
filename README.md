@@ -13,11 +13,13 @@ Now you can connect your Particle Photon directly to the Particle Cloud, Azure I
 
 ![photon in action](docs/photon-animated.gif)
 
+## Introduction
+
 The AzureIoTHubClient library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second, you will reach the 8000-message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
 Azure IoT Central is a "no code" service to graph and analysis telemetry, control devices, and trigger other processes. Under the covers, the service uses [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and the [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation apply to both Azure IoT Hub and IoT Central.
 
-## What you need
+### What you need
 
 1. [Particle Photon](https://store.particle.io/collections/photon)
 
@@ -95,19 +97,23 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
         You need to generate a connection string for the IoT Central device. You can either:
           1. Download the [Connection String Generator](https://github.com/Azure/dps-keygen/tree/master/bin) for [Windows](https://github.com/Azure/dps-keygen/tree/master/bin/windows), [macOS](https://github.com/Azure/dps-keygen/tree/master/bin/osx), or [Linux](https://github.com/Azure/dps-keygen/tree/master/bin/linux). The README has the run instructions.
-          2. or use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download needed.
+          2. Or use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)".
 
-8. Update the CONNECTION_STRING in the Particle Photon project with the connection string you generated in the previous step.
+### Update the Particle project CONNECT_STRING
+
+1. Update the CONNECTION_STRING in the Particle Photon project with the connection string you generated in the previous step.
 
     ![Update connection string](docs/new-particle-project-update-connection-string.jpg)
 
-9. Set your Particle Photon Firmware to 6.3
+### Flash your Particle Photon project
+
+1. Set your Particle Photon Firmware to 6.3
 
     Set the device target firmware to 6.3. Your mileage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery worked, 802.11n worked, and it uses less memory. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
 
       ![Target firmware 6.3](docs/particle-device-firmware-target.jpg)
 
-10. Flash the Particle Photon with Azure IoT Hub Client app your device from the Particle IDE.
+2. Flash the Particle Photon with Azure IoT Hub Client app your device from the Particle IDE.
 
 ## Understanding the AzureIotHubClient Library
 
