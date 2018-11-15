@@ -15,7 +15,7 @@ Now you can connect your Particle Photon directly to the Particle Cloud, Azure I
 
 ## Introduction
 
-The AzureIoTHubClient library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second, you will reach the 8000-message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
+A Particle Photon using the AzureIoTHubClient library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second, you will reach the 8000-message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
 Azure IoT Central is a "no code" service to graph and analysis telemetry, control devices, and trigger other processes. Under the covers, the service uses [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/?WT.mc_id=article-hackster-dglover), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/?WT.mc_id=article-hackster-dglover), and the [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps/?WT.mc_id=article-hackster-dglover). Hence this library and documentation apply Azure IoT Hub and Azure IoT Central.
 
