@@ -136,8 +136,8 @@ loop()
 
 |Callbacks | Description |
 |----|-----|
-| **callbackCloud2Device**   |Function called to process cloud to device messages.|
-| **callbackDirectMethod** |Function called when a Direct Method invoked cloud side. Includes a JSON payload.|
+| **callbackCloud2Device**   |This function is called to process Cloud to Device messages.|
+| **callbackDirectMethod** |This function is called when a Direct Method is invoked cloud side. Includes a JSON payload.|
 
 ```c
 // define callback signature
