@@ -57,7 +57,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 3. Select the **AzureIotHubClient** library
 
-4. Choose the **AzureIohHub-Full** example
+4. Choose the **AzureIotHub-Full** example
 
 5. Click on "**Use This Example**"
 
@@ -124,7 +124,7 @@ The AzureIotHubClient library includes these examples to help you understand its
 |API | Description |
 |----|-----|
 | **hub.loop**   |Call "loop" often as it handles processing of inbound messages and direct methods. It returns true if there is an active connection to Azure IoT Hub or IoT Central.|
-| hub.publish |Publishes the telemetry to Azure IoT Hub or IoT Central. It returns true if successful.|
+| **hub.publish** |Publishes the telemetry to Azure IoT Hub or IoT Central. It returns true if successful.|
 
 ```c
 #define CONNECTON_STRING "< your connection string >"
@@ -240,7 +240,7 @@ IotHub hub(CONNECTON_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSeconds
 
 2. Install [Particle CLI](https://docs.particle.io/tutorials/developer-tools/cli/) tools
 
-3. Updating your Particle Photon over the Air (OTA) is the easiest option if your device is already connected to the Particle Cloud. For more information see [Upgrading and downgrading Particle Device OS](https://community.particle.io/t/upgrading-and-downgrading-particle-device-os/43660).
+3. Updating your Particle Photon over the Air (OTA) is the easiest choice if your device is already connected to the Particle Cloud. For more information see [Upgrading and downgrading Particle Device OS](https://community.particle.io/t/upgrading-and-downgrading-particle-device-os/43660).
 
 4. If **upgrading** to firmware 6.3
     ```bash
