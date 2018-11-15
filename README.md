@@ -13,7 +13,7 @@ Now you can connect your Particle Photon directly to the Particle Cloud, Azure I
 
 ![photon in action](docs/photon-animated.gif)
 
-The AzureIoTHubClient library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second you will reach the 8000 message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
+The AzureIoTHubClient library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second, you will reach the 8000-message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
 Azure IoT Central is a "no code" service to graph and analysis telemetry, control devices, and trigger other processes. Under the covers, the service uses [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and the [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation apply to both Azure IoT Hub and IoT Central.
 
@@ -24,7 +24,7 @@ Azure IoT Central is a "no code" service to graph and analysis telemetry, contro
 2. [Particle Cloud Account](https://www.particle.io/)
 
 3. [Azure IoT Central Application](#create-a-free-azure-iot-central-application)
-    - Azure IoT Central is available as a free 7-day trial, or as a Pay-As-You-Go (free for the first 5 devices) service.
+    - Azure IoT Central is available as a free 7-day trial or as a Pay-As-You-Go (free for the first 5 devices) service.
 
 4. Or you can also use an Azure IoT Hub instead of Azure IoT Central. For more information read how to [Create an Azure IoT Hub (Free Tier - limited to 8000 messages per day)](#creating-an-azure-iot-hub-free-tier).
 
@@ -32,7 +32,7 @@ Azure IoT Central is a "no code" service to graph and analysis telemetry, contro
 
 Here are some reasons to connect your Particle Photon directly to Azure.
 
-1. Azure IoT Central is perfect if you limited skills, time, or budget to bring an idea to life.
+1. Azure IoT Central is perfect if you have limited development skills, time, or budget to bring an idea to life.
 
     ![iot central](docs/iot-central.png)
 
@@ -95,7 +95,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 9. Set your Particle Photon Firmware to 6.3
 
-    Set the device target firmware to 6.3. Your mileage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery worked, 802.11n worked, and there is more usable memory. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
+    Set the device target firmware to 6.3. Your mileage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery worked, 802.11n worked, and it uses less memory. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
 
       ![Target firmware 6.3](docs/particle-device-firmware-target.jpg)
 
@@ -103,7 +103,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 ## Understanding the AzureIotHubClient Library
 
-The AzureIotHubClient library includes these examples to help you understand its .
+The AzureIotHubClient library includes these examples to help you understand its use.
 
 ### Example: AzureIotHub-Simple
 
