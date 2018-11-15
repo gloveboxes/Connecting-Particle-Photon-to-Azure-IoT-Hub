@@ -14,7 +14,7 @@ Now you can connect your Particle Photon to directly to the Particle Cloud, Azur
 
 ![](docs/photon-animated.gif)
 
-The AzureIoTHubClient library running on your Particle Photon can send **50 messages per second** to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which is limited to 8000 messages per day, you will reach the limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
+The AzureIoTHubClient library running on your Particle Photon can send **50 messages per second** to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which has a limit of 8000 messages per day, you will reach the limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
 Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Under the covers the service is built on [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation is applicable to both Azure IoT Hub and IoT Central.
 
@@ -33,7 +33,7 @@ Azure IoT Central is ready to go, no code required service you can use to plot a
 
 Here are some reasons to connect your Particle Photon directly to Azure.
 
-1. Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Perfect if you are a hacker, or working on a skunkworks project or a startup with limited budget wanting to get an idea across to a potential client.
+1. Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Perfect if you are a hacker or working on a skunkworks project or a startup with limited budget wanting to get an idea across to a potential client.
 
     ![iot central](docs/iot-central.png)
 
@@ -86,7 +86,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
         You need to generate a connection string for the IoT Central device. You can either:
           1. Download the [Connection String Generator](https://github.com/Azure/dps-keygen/tree/master/bin) for [Windows](https://github.com/Azure/dps-keygen/tree/master/bin/windows), [macOS](https://github.com/Azure/dps-keygen/tree/master/bin/osx), or [Linux](https://github.com/Azure/dps-keygen/tree/master/bin/linux). The README has the run instructions.
-          2. or use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download required.
+          2. or use my unofficial web-based [Connection String Generator](https://dpsgen.z8.web.core.windows.net/)". No download needed.
 
 8. Update the CONNECTION_STRING in the Particle Photon project with the connection string you generated in the previous step.
 
