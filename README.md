@@ -13,9 +13,9 @@ Now you can connect your Particle Photon directly to the Particle Cloud, Azure I
 
 ![photon in action](docs/photon-animated.gif)
 
-The AzureIoTHubClient library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day, At 50 messages per second you will reach the 8000 message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
+The AzureIoTHubClient library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second you will reach the 8000 message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
-Azure IoT Central is ready to go service you can use to plot and analysis telemetry, centrally control devices, and start business processes. Under the covers, the service uses [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation apply to both Azure IoT Hub and IoT Central.
+Azure IoT Central is a "no code" service to graph and analysis telemetry, control devices, and trigger other processes. Under the covers, the service uses [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and the [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation apply to both Azure IoT Hub and IoT Central.
 
 ## What you need
 
@@ -32,7 +32,7 @@ Azure IoT Central is ready to go service you can use to plot and analysis teleme
 
 Here are some reasons to connect your Particle Photon directly to Azure.
 
-1. Azure IoT Central "no code" service to graph and analysis telemetry, control devices, and trigger other processes. Perfect if you are a hacker, or working on a skunkworks project, or a startup with a limited budget wanting to get an idea across to a client.
+1. Azure IoT Central is perfect if you limited skills, time, or budget to bring an idea to life.
 
     ![iot central](docs/iot-central.png)
 
@@ -73,12 +73,12 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     To summaries the screencast:
 
-    1. Create the Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central), then click **Getting Started**
-    2. Select Trial, Custom Application, type your application name, click **Create**
-    3. Click **Create Device Templates**, name your template eg Particle, click **Create**
-    4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry, then click **Done**.
-    5. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff", then click **Done**.
-    6. Click **Device Explorer** on the sidebar menu, select the template you created, then add a **Real Device**
+    1. Create an Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central). Then click **Getting Started**
+    2. Select Trial, Custom Application, type your application name. Then click **Create**
+    3. Click **Create Device Templates**, name your template eg Particle. Then click **Create**
+    4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry. Then click **Done**.
+    5. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff". Then click **Done**.
+    6. Click **Device Explorer** on the sidebar menu, select the template you created. Then add a **Real Device**
     7. Once you have created your real device click the **Connect** button in the top right-hand corner of the screen to reveal the device credentials that you will need for the next step.
 
           ![Device Connection](docs/iot-central-device-connection.jpg)
@@ -101,16 +101,16 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 10. Flash the Particle Photon with Azure IoT Hub Client app your device from the Particle IDE.
 
-## Understanding the AzureIotHubClient Library with examples
+## Understanding the AzureIotHubClient Library
 
-The following examples will help you understand how to use the Azure IoT Hub Client library. These examples are simplified versions of the example templates included with the library.
+The AzureIotHubClient library includes these examples to help you understand its .
 
 ### Example: AzureIotHub-Simple
 
 |API | Description |
 |----|-----|
-| **hub.loop**   |Should be called often as it handles processing inbound messages and methods. It returns true if there is an active connection to Azure IoT Hub or IoT Central.|
-| hub.publish |Publishes the telemetry data to Azure IoT Hub or IoT Central. It returns true if successful.|
+| **hub.loop**   |Call "loop" often as it handles processing of inbound messages and direct methods. It returns true if there is an active connection to Azure IoT Hub or IoT Central.|
+| hub.publish |Publishes the telemetry to Azure IoT Hub or IoT Central. It returns true if successful.|
 
 ```c
 #define CONNECTON_STRING "< your connection string >"
@@ -193,8 +193,8 @@ int callbackDirectMethod(char *method, byte *payload, unsigned int payloadLength
 
 |Parameter|Description|
 |---------|-----------|
-|maxBufferSize| defaults to 500 bytes, make bigger for larger messages.|
-|sasExpiryPeriodInSeconds|Defaults to 3600 seconds (60 minute) expiry.|
+|maxBufferSize| Defaults to 500 bytes. Increase for larger messages.|
+|sasExpiryPeriodInSeconds|Defaults to 3600 seconds (60 minutes).|
 
 ```c
 int maxBufferSize = 500;
@@ -226,7 +226,7 @@ IotHub hub(CONNECTON_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSeconds
 
 2. Install [Particle CLI](https://docs.particle.io/tutorials/developer-tools/cli/) tools
 
-3. Updating your Particle Photon over the Air (OTA) is easiest if your device is already connected to the Particle Cloud. For more information see [Upgrading and downgrading Particle Device OS](https://community.particle.io/t/upgrading-and-downgrading-particle-device-os/43660).
+3. Updating your Particle Photon over the Air (OTA) is the easiest option if your device is already connected to the Particle Cloud. For more information see [Upgrading and downgrading Particle Device OS](https://community.particle.io/t/upgrading-and-downgrading-particle-device-os/43660).
 
 4. If **upgrading** to firmware 6.3
     ```bash
