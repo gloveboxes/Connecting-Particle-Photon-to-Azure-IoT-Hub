@@ -11,7 +11,8 @@
 
 Now you can connect your Particle Photon to directly to the Particle Cloud, Azure IoT Hub, and Azure IoT Central. The **AzureIoTHubClient** library supports bidirectional messaging, [Direct methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins).
 
-!!!! ADD PHOTO HERE !!!
+
+![](docs/photon-animated.gif)
 
 The AzureIoTHubClient library running on your Particle Photon can send **50 messages per second** to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which is limited to 8000 messages per day, you will reach the limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
