@@ -77,12 +77,14 @@ Here are some reasons to connect your Particle Photon directly to Azure.
     2. Select Trial, Custom Application, type your application name. Then click **Create**
     3. Click **Create Device Templates**, name your template, for example, "Particle". Then click **Create**
     4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry.
+
         |Display Name| Field name     | Units  | Minimum | Maximum | Decimals |
         |------------| -------------- | ------ | ------- | ------- | -------- |
         |Humidity    | humidity       | %      | 0       | 100     | 0        |
         |Temperature | temp           | degC     | -10   | 60      | 0        |
         |Pressure    | pressure       | hPa    | 800     | 1260    | 0        |
-         Then click **Done**.
+
+        Then click **Done**.
     5. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff". Then click **Done**.
     6. Click **Device Explorer** on the sidebar menu, select the template you created. Then add a **Real Device**
     7. Once you have created your real device click the **Connect** button in the top right-hand corner of the screen to reveal the device credentials that you will need for the next step.
