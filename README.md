@@ -75,7 +75,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     1. Create an Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central). Then click **Getting Started**
     2. Select Trial, Custom Application, type your application name. Then click **Create**
-    3. Click **Create Device Templates**, name your template, for example "Particle". Then click **Create**
+    3. Click **Create Device Templates**, name your template, for example, "Particle". Then click **Create**
     4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry. Then click **Done**.
     5. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff". Then click **Done**.
     6. Click **Device Explorer** on the sidebar menu, select the template you created. Then add a **Real Device**
