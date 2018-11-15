@@ -11,12 +11,11 @@
 
 Now you can connect your Particle Photon to directly to the Particle Cloud, Azure IoT Hub, and Azure IoT Central. The **AzureIoTHubClient** library supports bidirectional messaging, [Direct methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins).
 
-
-![](docs/photon-animated.gif)
+![photon in action](docs/photon-animated.gif)
 
 The AzureIoTHubClient library running on your Particle Photon can send **50 messages per second** to Azure IoT Hub. If you are using the free tier of Azure IoT Hub which has a limit of 8000 messages per day, you will reach the limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
-Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Under the covers the service is built on [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation is applicable to both Azure IoT Hub and IoT Central.
+Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Under the covers the service is built on [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/), and [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps). Hence this library and documentation apply to both Azure IoT Hub and IoT Central.
 
 ## What you need
 
@@ -33,7 +32,7 @@ Azure IoT Central is ready to go, no code required service you can use to plot a
 
 Here are some reasons to connect your Particle Photon directly to Azure.
 
-1. Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Perfect if you are a hacker or working on a skunkworks project or a startup with limited budget wanting to get an idea across to a potential client.
+1. Azure IoT Central is ready to go, no code required service you can use to plot and analysis device telemetry, centrally control devices, and initiate business processes. Perfect if you are a hacker or working on a skunkworks project or a startup with a limited budget wanting to get an idea across to a potential client.
 
     ![iot central](docs/iot-central.png)
 
@@ -77,7 +76,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
     3. Click **Create Device Templates**, name your template eg Particle, click **Create**
     4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry, then click **Done**.
     5. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff", then click **Done**.
-    6. Click **Device Explorer** on the sidebar menu, select the template you just created, the add a **Real Device**
+    6. Click **Device Explorer** on the sidebar menu, select the template you just created, then add a **Real Device**
     7. Once you have created your real device click the **Connect** button in the top right-hand corner of the screen to reveal the device credentials that you will need for the next step.
 
           ![Device Connection](docs/iot-central-device-connection.jpg)
@@ -138,7 +137,7 @@ loop()
 |Callbacks | Description |
 |----|-----|
 | **callbackCloud2Device**   |Function called to process cloud to device messages.|
-| **callbackDirectMethod** |Function called when a Direct Method invoked cloud side. Includes added Json payload.|
+| **callbackDirectMethod** |Function called when a Direct Method invoked cloud side. Includes a JSON payload.|
 
 ```c
 // define callback signature
@@ -202,7 +201,7 @@ time_t sasExpiryPeriodInSeconds = 3600;
 IotHub hub(CONNECTON_STRING, callbackCloud2Device, callbackDirectMethod, maxBufferSize, sasExpiryPeriodInSeconds);
 ```
 
-Passing in turing parameters with no callbacks.
+Passing in tuning parameters with no callbacks.
 
 ```c
 // with no callbacks
@@ -225,7 +224,7 @@ IotHub hub(CONNECTON_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSeconds
 
 2. Install [Particle CLI](https://docs.particle.io/tutorials/developer-tools/cli/) tools
 
-3. Over the Air (OTA) update your Particle Photon is easiest if your device is already connected to the Particle Cloud. For more information see [Upgrading and downgrading Particle Device OS](https://community.particle.io/t/upgrading-and-downgrading-particle-device-os/43660).
+3. Updating your Particle Photon over the Air (OTA) is easiest if your device is already connected to the Particle Cloud. For more information see [Upgrading and downgrading Particle Device OS](https://community.particle.io/t/upgrading-and-downgrading-particle-device-os/43660).
 
 4. If **upgrading** to firmware 6.3
     ```bash
