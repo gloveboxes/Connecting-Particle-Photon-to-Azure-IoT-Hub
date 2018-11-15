@@ -92,7 +92,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
       ![create a real device](docs/iot-central-add-real-device.png)
     7. When you have created your real device click the **Connect** button in the top right-hand corner of the screen to display the device credentials. You will need these credentials for the next step.
 
-          ![Device Connection](docs/iot-central-device-connection.jpg)
+          ![Device Connection](docs/device-connection.png)
 
     8. Create an IoT Central Device Connection String
 
