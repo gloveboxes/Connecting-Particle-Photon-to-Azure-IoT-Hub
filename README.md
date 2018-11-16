@@ -73,9 +73,9 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     [![screencast](docs/iot-central-youtube.jpg)](https://www.youtube.com/watch?v=D26rJmHyZcA&t=5s)
 
-    To summaries the screencast:
+    To summarize the screencast:
 
-    1. Create an Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central). Then click **Getting Started**
+    1. Create an Azure IoT Central application from [https://azure.microsoft.com/en-au/services/iot-central](https://azure.microsoft.com/en-au/services/iot-central). Then click **Get Started**
     2. Select Trial, Custom Application, type your application name. Then click **Create**
     3. Click **Create Device Templates**, name your template, for example, "Particle". Then click **Create**
     4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry.
