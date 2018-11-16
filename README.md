@@ -13,8 +13,6 @@ Now you can connect your Particle Photon directly to the Particle Cloud, Azure I
 
 ![photon in action](docs/photon-animated.gif)
 
-This is an online <a href="http://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>
-
 ## Introduction
 
 A Particle Photon using the **AzureIoTHubClient** library can publish **50 messages per second** to Azure IoT Hub. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second, you will reach the 8000-message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
