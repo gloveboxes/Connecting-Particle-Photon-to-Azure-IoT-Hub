@@ -1,4 +1,4 @@
-# Connect your Particle Photon Directly to Azure IoT Hub or IoT Central
+# Connect your Particle Photon directly to Azure IoT Hub or IoT Central
 
 |Author|[Dave Glover](https://developer.microsoft.com/en-us/advocates/dave-glover), Microsoft Cloud Developer Advocate |
 |----|---|
@@ -25,8 +25,9 @@ Azure IoT Central is a "no code" service to graph and analysis telemetry, contro
 
 2. [Particle Cloud Account](https://www.particle.io/)
 
-3. [Azure IoT Central Application](#create-a-free-azure-iot-central-application)
-    - Azure IoT Central is available as a free 7-day trial or as a Pay-As-You-Go (free for the first 5 devices) service.
+3. [Azure IoT Central Application]([#create-a-free-azure-iot-central-application](https://azure.microsoft.com/en-gb/services/iot-central/?WT.mc_id=article-github-dglover))
+  
+    Azure IoT Central is available as a free 7-day trial or as a Pay-As-You-Go (free for the first 5 devices) service.
 
 4. Or you can also use an Azure IoT Hub instead of Azure IoT Central. For more information read how to [Create an Azure IoT Hub (Free Tier - limited to 8000 messages per day)](#creating-an-azure-iot-hub-free-tier).
 
