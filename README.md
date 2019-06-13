@@ -6,7 +6,7 @@
 |Platform|[Particle Photon](https://store.particle.io/collections/photon), [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/?WT.mc_id=article-github-dglover), [Azure IoT Hub](https://docs.microsoft.com/en-au/azure/iot-hub/?WT.mc_id=article-github-dglover)|
 |Video Training|[What is Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/overview-iot-central/?WT.mc_id=article-github-dglover), [Introduction to Azure IoT Hub](https://www.youtube.com/watch?v=smuZaZZXKsU)|
 |Screencasts|[How to create the Azure IoT Central Application](https://youtu.be/D26rJmHyZcA), [How to create an Azure IoT Hub](https://youtu.be/lHpUu6wSX40)|
-|Date|As at Nov 2018|
+|Date|As at June 2019|
 |Acknowledgment|This AzureIoTHubClient library depends and builds upon the fantastic [MQTT-TLS](https://github.com/hirotakaster/MQTT-TLS) library.|
 
 Now you can connect your Particle Photon directly to the Particle Cloud, Azure IoT Hub, and Azure IoT Central. The **AzureIoTHubClient** library supports two-way messaging, [Direct Methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods/?WT.mc_id=article-github-dglover), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins/?WT.mc_id=article-github-dglover).
@@ -108,11 +108,11 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 ### Flash your Particle Photon project
 
-1. Set your Particle Photon Firmware to 6.3
+1. Set your Particle Photon Firmware to 1.10
 
-    Set the device target firmware to 6.3. Your mileage may vary. I found firmware 6.3 to be more reliable than 7.0. WiFi recovery worked, 802.11n worked, and it uses less memory. See [Updating Particle Photon Firmware to 6.3](#updating-particle-photon-firmware-to-63).
+    See [HOW DO I UPGRADE MY FIRMWARE?](https://docs.particle.io/support/troubleshooting/firmware-upgrades/photon/)
 
-      ![Target firmware 6.3](docs/particle-device-firmware-target.jpg)
+    ![Target firmware 6.3](docs/particle-device-firmware-target.jpg)
 
 2. Flash your Particle Photon with Azure IoT Hub Client app your device from the Particle IDE.
 
@@ -234,22 +234,3 @@ IotHub hub(CONNECTION_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSecond
       [![screencast](docs/create-azure-iot-hub-youtube.jpg)](https://www.youtube.com/watch?v=lHpUu6wSX40)
 
 3. For more information see [Create an Azure IoT Hub (free tier) using the Azure portal](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal/?WT.mc_id=article-github-dglover)
-
-## Updating Particle Photon Firmware to 6.3
-
-1. Download [v0.6.3 Firmware Release (Photon/P1)](https://github.com/particle-iot/firmware/releases/tag/v0.6.3)
-
-2. Install [Particle CLI](https://docs.particle.io/tutorials/developer-tools/cli/) tools
-
-3. Updating your Particle Photon over the Air (OTA) is the easiest choice if your device is already connected to the Particle Cloud. For more information see [Upgrading and downgrading Particle Device OS](https://community.particle.io/t/upgrading-and-downgrading-particle-device-os/43660).
-
-4. If **upgrading** to firmware 6.3
-    ```bash
-    particle flash <your device id> system-part1-0.6.3-photon.bin
-    particle flash <your device id> system-part2-0.6.3-photon.bin
-    ```
-5. If **downgrading** to firmware 6.3 (reverse order)
-    ```bash
-    particle flash <your device id> system-part2-0.6.3-photon.bin
-    particle flash <your device id> system-part1-0.6.3-photon.bin
-    ```
