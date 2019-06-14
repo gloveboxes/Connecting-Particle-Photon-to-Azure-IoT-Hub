@@ -13,7 +13,7 @@
 
 Now you can connect your Particle Argon or Photon directly to the Particle Cloud, Azure IoT Hub, and Azure IoT Central. The **AzureIoTHubClient** library supports two-way messaging, [Direct Methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods/?WT.mc_id=github-blog-dglover), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins/?WT.mc_id=github-blog-dglover).
 
-![photon in action](./docs/photon-animated.gif)
+![photon in action](/docs/photon-animated.gif)
 
 ## Introduction
 
@@ -39,7 +39,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 1. Azure IoT Central is perfect if you have limited development skills, time, or budget to bring an IoT project to life.
 
-    ![iot central](./docs/iot-central.png)
+    ![iot central](/docs/iot-central.png)
 
 2. You want two-way messaging and direct method invocation from Azure.
 
@@ -56,7 +56,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 2. Click the Libraries icon and type "**AzureIotHubClient**" in the Community Libraries" text box.
 
-    ![new-particle-project-library.JPG](./docs/new-particle-project-library.JPG)
+    ![new-particle-project-library.JPG](/docs/new-particle-project-library.JPG)
 
 3. Select the **AzureIotHubClient** library
 
@@ -64,7 +64,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 5. Click on "**Use This Example**"
 
-    ![select library](./docs/new-particle-project-select-library-use-example.JPG)
+    ![select library](/docs/new-particle-project-select-library-use-example.JPG)
 
 6. Azure IoT Central or Azure IoT Hub
 
@@ -92,10 +92,10 @@ Here are some reasons to connect your Particle Photon directly to Azure.
         Then click **Done**.
     5. Click **Commands** tab, add commands for "lighton", "lightoff", "fanon", and "fanoff". Then click **Done**.
     6. Click **Device Explorer** on the sidebar menu, select the template you created. Then add a **Real Device**
-      ![create a real device](./docs/iot-central-add-real-device.png)
+      ![create a real device](/docs/iot-central-add-real-device.png)
     7. When you have created your real device click the **Connect** button in the top right-hand corner of the screen to display the device credentials. You will need these credentials for the next step.
 
-          ![Device Connection](./docs/device-connection.png)
+          ![Device Connection](/docs/device-connection.png)
 
     8. Create an IoT Central Device Connection String
 
@@ -107,7 +107,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
 1. Update the CONNECTION_STRING in the Particle Photon project with the connection string you generated in the previous step.
 
-    ![Update connection string](./docs/new-particle-project-update-connection-string.jpg)
+    ![Update connection string](/docs/new-particle-project-update-connection-string.jpg)
 
 ### Flash your Particle Photon project
 
@@ -115,7 +115,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     See [HOW DO I UPGRADE MY FIRMWARE?](https://docs.particle.io/support/troubleshooting/firmware-upgrades/photon/)
 
-    ![Target firmware 6.3](./docs/particle-device-firmware-target.jpg)
+    ![Target firmware 6.3](/docs/particle-device-firmware-target.jpg)
 
 2. Flash your Particle Photon with Azure IoT Hub Client app your device from the Particle IDE.
 
@@ -234,6 +234,6 @@ IotHub hub(CONNECTION_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSecond
 
 2. Watch this [screencast](https://youtu.be/lHpUu6wSX40) for an introduction to creating an Azure IoT Hub and an IoT Device.
 
-      [![screencast](./docs/create-azure-iot-hub-youtube.jpg)](https://www.youtube.com/watch?v=lHpUu6wSX40)
+      [![screencast](/docs/create-azure-iot-hub-youtube.jpg)](https://www.youtube.com/watch?v=lHpUu6wSX40)
 
 3. For more information see [Create an Azure IoT Hub (free tier) using the Azure portal](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal/?WT.mc_id=github-blog-dglover)
