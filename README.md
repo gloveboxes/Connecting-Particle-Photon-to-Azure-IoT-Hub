@@ -1,6 +1,6 @@
 # Connect your Particle directly to Azure IoT
 
-![Particle and Azure IoT Central](./docs/particle-azure-iot-central-banner.png)
+![Particle and Azure IoT Central](/docs/particle-azure-iot-central-banner.png)
 
 |Author|[Dave Glover](https://developer.microsoft.com/en-us/advocates/dave-glover?WT.mc_id=github-blog-dglover), Microsoft Cloud Advocate |
 |----|---|
