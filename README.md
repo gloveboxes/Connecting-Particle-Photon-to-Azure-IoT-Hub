@@ -74,7 +74,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     Watch this 5-minute [screencast](https://youtu.be/D26rJmHyZcA) on how to create the Azure IoT Central Application to chart telemetry and send commands to your Particle Photon.
 
-    [![screencast](docs/iot-central-youtube.jpg)](https://www.youtube.com/watch?v=D26rJmHyZcA&t=5s)
+    [![screencast](/docs/iot-central-youtube.jpg)](https://www.youtube.com/watch?v=D26rJmHyZcA&t=5s)
 
     To summarize the screencast:
 
