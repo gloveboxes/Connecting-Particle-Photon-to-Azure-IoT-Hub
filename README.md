@@ -2,24 +2,24 @@
 
 ![Particle and Azure IoT Central](./docs/particle-azure-iot-central-banner.png)
 
-|Author|[Dave Glover](https://developer.microsoft.com/en-us/advocates/dave-glover?WT.mc_id=article-github-dglover), Microsoft Cloud Advocate |
+|Author|[Dave Glover](https://developer.microsoft.com/en-us/advocates/dave-glover?WT.mc_id=github-blog-dglover), Microsoft Cloud Advocate |
 |----|---|
-|Documentation|[README](https://github.com/gloveboxes/Connecting-Particle-Photon-to-Azure-IoT-Hub/blob/master/README.md)|
-|Platform|[Particle Argon or Photon](https://store.particle.io/collections/wifi), [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/?WT.mc_id=article-github-dglover), [Azure IoT Hub](https://docs.microsoft.com/en-au/azure/iot-hub/?WT.mc_id=article-github-dglover)|
-|Video Training|[What is Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/overview-iot-central/?WT.mc_id=article-github-dglover), [Introduction to Azure IoT Hub](https://www.youtube.com/watch?v=smuZaZZXKsU)|
+|Documentation|[README](https://gloveboxes.github.io/Connecting-Particle-Photon-to-Azure-IoT-Hub/)|
+|Platform|[Particle Argon or Photon](https://store.particle.io/collections/wifi), [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/?WT.mc_id=github-blog-dglover), [Azure IoT Hub](https://docs.microsoft.com/en-au/azure/iot-hub/?WT.mc_id=github-blog-dglover)|
+|Video Training|[What is Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/overview-iot-central/?WT.mc_id=github-blog-dglover), [Introduction to Azure IoT Hub](https://www.youtube.com/watch?v=smuZaZZXKsU)|
 |Screencasts|[How to create the Azure IoT Central Application](https://youtu.be/D26rJmHyZcA), [How to create an Azure IoT Hub](https://youtu.be/lHpUu6wSX40)|
 |Date|As at June 2019|
 |Acknowledgment|This Azure IoT Hub Client library depends and builds upon the fantastic [MQTT-TLS](https://github.com/hirotakaster/MQTT-TLS) library.|
 
-Now you can connect your Particle Argon or Photon directly to the Particle Cloud, Azure IoT Hub, and Azure IoT Central. The **AzureIoTHubClient** library supports two-way messaging, [Direct Methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods/?WT.mc_id=article-github-dglover), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins/?WT.mc_id=article-github-dglover).
+Now you can connect your Particle Argon or Photon directly to the Particle Cloud, Azure IoT Hub, and Azure IoT Central. The **AzureIoTHubClient** library supports two-way messaging, [Direct Methods](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods/?WT.mc_id=github-blog-dglover), and soon [Device Twins](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-device-twins/?WT.mc_id=github-blog-dglover).
 
-![photon in action](docs/photon-animated.gif)
+![photon in action](./docs/photon-animated.gif)
 
 ## Introduction
 
 **Warning**: A Particle running the **AzureIoTHubClient** library can publish over **50 messages per second** to Azure IoT. The free tier of Azure IoT Hub limits the number of messages to 8000 per day. At 50 messages per second, you will reach the 8000-message limit in under 3 minutes. So be sure to throttle the telemetry publish rate.
 
-Azure IoT Central is a "no code" service to graph and analysis telemetry, control devices, and trigger other processes. Under the covers, the service uses [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/?WT.mc_id=article-github-dglover), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/?WT.mc_id=article-github-dglover), and the [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps/?WT.mc_id=article-github-dglover). Hence this library and documentation apply Azure IoT Hub and Azure IoT Central.
+Azure IoT Central is a "no code" service to graph and analysis telemetry, control devices, and trigger other processes. Under the covers, the service uses [Azure IoT Hub](https://azure.microsoft.com/en-au/services/iot-hub/?WT.mc_id=github-blog-dglover), [Azure Time Series Insights](https://azure.microsoft.com/en-au/services/time-series-insights/?WT.mc_id=github-blog-dglover), and the [Azure IoT Hub Device Provisioning Service](https://docs.microsoft.com/en-us/azure/iot-dps/about-iot-dps/?WT.mc_id=github-blog-dglover). Hence this library and documentation apply Azure IoT Hub and Azure IoT Central.
 
 ### What you need
 
@@ -27,11 +27,11 @@ Azure IoT Central is a "no code" service to graph and analysis telemetry, contro
 
 2. [Particle Cloud Account](https://www.particle.io/)
 
-3. [Azure IoT Central Application](https://azure.microsoft.com/en-au/services/iot-central?WT.mc_id=article-github-dglover)
+3. [Azure IoT Central Application](https://azure.microsoft.com/en-au/services/iot-central?WT.mc_id=github-blog-dglover)
   
     Azure IoT Central is available as a free 7-day trial or as a Pay-As-You-Go (free for the first 5 devices) service.
 
-4. Alternately, you can set up an Azure IoT Hub. You can create a [free Azure Account](https://azure.microsoft.com/en-au/free?WT.mc_id=article-github-dglover), if you are a student, you can create a [free Azure for Students account](https://azure.microsoft.com/en-gb/free/students?WT.mc_id=article-github-dglover), no credit card required. For more information, read how to [Create a Free Azure IoT Hub](#How-to-set-up-an-Azure-IoT-Hub-(Free-Tier)).
+4. Alternately, you can set up an Azure IoT Hub. You can create a [free Azure Account](https://azure.microsoft.com/en-au/free?WT.mc_id=github-blog-dglover), if you are a student, you can create a [free Azure for Students account](https://azure.microsoft.com/en-gb/free/students?WT.mc_id=github-blog-dglover), no credit card required. For more information, read how to [Create a Free Azure IoT Hub](#How-to-set-up-an-Azure-IoT-Hub-(Free-Tier)).
 
 ## Why connect your Particle Photon to Azure Services
 
@@ -46,9 +46,9 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 3. You are already using Azure and you want to connect, control, and integrate your devices with other business processes.
 
 4. You want to learn how to do interesting things with your telemetry such as:
-    - [Weather forecasting using the sensor data from your IoT hub in Azure Machine Learning](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-weather-forecast-machine-learning/?WT.mc_id=article-github-dglover),
-    - [Visualize real-time sensor data from your Azure IoT hub by using the Web Apps feature of Azure App Service](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-web-apps/?WT.mc_id=article-github-dglover),
-    - [IoT remote monitoring and notifications with Azure Logic Apps connecting your IoT hub and mailbox](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps/?WT.mc_id=article-github-dglover).
+    - [Weather forecasting using the sensor data from your IoT hub in Azure Machine Learning](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-weather-forecast-machine-learning/?WT.mc_id=github-blog-dglover),
+    - [Visualize real-time sensor data from your Azure IoT hub by using the Web Apps feature of Azure App Service](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-web-apps/?WT.mc_id=github-blog-dglover),
+    - [IoT remote monitoring and notifications with Azure Logic Apps connecting your IoT hub and mailbox](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps/?WT.mc_id=github-blog-dglover).
 
 ## How to connect your Particle Photon to IoT Central or Azure IoT Hub
 
@@ -78,7 +78,7 @@ Here are some reasons to connect your Particle Photon directly to Azure.
 
     To summarize the screencast:
 
-    1. Create an [Azure IoT Central](https://azure.microsoft.com/en-au/services/iot-central?WT.mc_id=article-github-dglover) application. Then click **Get Started**
+    1. Create an [Azure IoT Central](https://azure.microsoft.com/en-au/services/iot-central?WT.mc_id=github-blog-dglover) application. Then click **Get Started**
     2. Select Trial, Custom Application, type your application name. Then click **Create**
     3. Click **Create Device Templates**, name your template, for example, "Particle". Then click **Create**
     4. Edit the Template, add **Measurements** for Temperature, Humidity, and Pressure telemetry.
@@ -230,10 +230,10 @@ IotHub hub(CONNECTION_STRING, NULL, NULL, maxBufferSize, sasExpiryPeriodInSecond
 
 ## How to set up an Azure IoT Hub (Free Tier)
 
-1. Create a [free Azure Account](https://azure.microsoft.com/en-au/free?WT.mc_id=article-github-dglover). If you are a student, you can create a [free Azure for Students account](https://azure.microsoft.com/en-gb/free/students?WT.mc_id=article-github-dglover), no credit card required
+1. Create a [free Azure Account](https://azure.microsoft.com/en-au/free?WT.mc_id=github-blog-dglover). If you are a student, you can create a [free Azure for Students account](https://azure.microsoft.com/en-gb/free/students?WT.mc_id=github-blog-dglover), no credit card required
 
 2. Watch this [screencast](https://youtu.be/lHpUu6wSX40) for an introduction to creating an Azure IoT Hub and an IoT Device.
 
       [![screencast](docs/create-azure-iot-hub-youtube.jpg)](https://www.youtube.com/watch?v=lHpUu6wSX40)
 
-3. For more information see [Create an Azure IoT Hub (free tier) using the Azure portal](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal/?WT.mc_id=article-github-dglover)
+3. For more information see [Create an Azure IoT Hub (free tier) using the Azure portal](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal/?WT.mc_id=github-blog-dglover)
